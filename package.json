@@ -1,0 +1,22 @@
+{
+  "name": "ganesuperservicios",
+  "version": "1.0.0",
+  "description": "Tema de Wordpress para el sitio web de Gane - Super Servicios del Valle S.A.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://diferrev@bitbucket.org/diferrev/ganesuperservicios.git"
+  },
+  "author": "Diego F. Reyes",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/diferrev/ganesuperservicios#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^3.1.0"
+  }
+}
