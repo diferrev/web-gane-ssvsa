@@ -9,3 +9,424 @@ License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: ganesuperservicios
 */
+
+$blue: rgb(52, 152, 219);
+$dark-blue: rgb(31, 58, 147);
+$white: rgb(255, 255, 255);
+$white-smoke: rgb(244, 244, 244);
+$black-op: rgba(0, 0, 0, 0);
+$yellow: rgba(255, 218, 12, 1.0);
+
+html{
+    height: 100%;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body{
+    position: relative;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    min-height: 100%;
+    padding-bottom: 263px;
+}
+figure{
+    margin: 0;
+}
+p{
+    line-height: 1.4;
+}
+/* 
+ * Helpers
+ */
+.container{
+    max-width: 1250px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.wrapper{
+    height: 100%;
+    min-height: 100%;
+}
+
+.btn{
+    text-decoration: none;
+    border: none;
+    padding: 10px 15px;
+    background-color: $white-smoke;
+    display: inline-block;
+    font-size: 0.9rem;
+    color: #333333;
+    text-align: center;
+    transition: all .5s ease;
+    width: 120px;
+    border-radius: 3px;
+    &:hover{
+        background-color: darken($white-smoke, 5%);
+    }
+    &--blue{
+        background-color: $blue;
+        color: $white;
+        &:hover{
+            background-color: darken($blue, 15%);
+        }
+    }
+    &--yellow{
+        background-color:$yellow;
+        &:hover{
+            background-color: orange;
+        }
+    }
+    &--cta{
+        display: block;
+        padding: 15px 15px;
+        width: 180px;
+        font-size: 1.2rem;
+    }
+}
+.home-section{
+    padding: 50px 0 25px;
+    &__title{
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 50px;
+        font-weight: 400;
+        font-size: 1.5rem;
+        padding-bottom: 13px;
+        border-bottom: 2px solid $white-smoke;
+        max-width: 700px;
+    }
+}
+
+/* 
+ * Header
+ */
+.header{
+    background-color:transparent;
+    background: linear-gradient(black, $black-op);
+    position: fixed;
+    width: 100%;
+    transition: all .5s ease;
+    .header__icon{
+        display: none;
+    }
+    &--scroll{
+        background: none;
+        background-color: $dark-blue;
+        .header__logo{
+            display: none;
+        }
+        .header__icon{
+            display: block;
+        }
+    }
+}
+.header__inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.header__logo{
+    img{
+        width: 230px;
+    }
+}
+.nav{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    li{
+        display:inline-block;
+        margin-left: 10px;
+    }
+    a{
+        color: $white;
+        text-decoration: none;
+        display:block;
+        padding: 5px 10px;
+        font-weight: 600;
+        border-bottom: 2px solid transparent;
+        transition: border-bottom .3s ease;
+        &:hover{
+            border-bottom: 2px solid $yellow;
+        }
+    }
+}
+
+.slider{
+    overflow: hidden;
+
+    .slider-item{
+        width: 100%;
+        height: 80vh;
+        background-size: cover;
+        background-position: center;
+        color: $white;
+        .container{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+        &__title{
+            font-size: 3rem;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 10px black;
+        }
+    }
+}
+
+/*
+ * Featured 
+ */
+.featured{
+   background-color: $white-smoke;
+}
+.featured__inner{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+.featured__item{
+    width: 100%;
+    margin-bottom: 25px;
+    img{
+        width: 100%;
+    }
+    @media screen and (min-width: 1200px){
+        max-width: 290px;
+    }
+}
+
+/*
+ * News
+ */
+.news{
+    
+}
+.news__inner{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+.new{
+    width: 100%;
+    margin-bottom: 25px; 
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: 1200px){
+        max-width: 290px;
+    }
+    .new__thumbnail{
+        margin: 0 0 13px;
+        img{
+            width: 100%; 
+        }
+    }
+    
+    .new__title{
+        margin: 0 0 13px;
+        font-size: 1.1rem;
+        line-height: 1.5;
+        font-weight: 600;
+        a{
+            text-decoration: none;
+            color: $blue;
+            transition: color .3s ease;
+            &:hover{
+                color: darken($blue, 15%);
+            }
+        }
+    }
+
+    .new__meta{
+        margin-bottom: 13px;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: darken($white-smoke, 40%);
+        font-weight: 600;
+        display: block;
+        i{
+            margin-right: 3px;
+        }
+    }
+
+    p{
+        font-size: 0.9rem;
+        margin: 0 0 13px;
+        flex-grow: 1;
+    }
+    
+    .new__read-more{
+        margin-left:auto;
+        margin-right: auto;
+    }
+}
+
+.new--horizontal{
+    flex-direction: row;
+    align-items: stretch;
+    border-bottom: 2px solid $white-smoke;
+    margin-bottom: 25px;
+    @media screen and (min-width: 1200px){
+        max-width: 100%;
+    }
+    .new__thumbnail{
+        margin-right: 13px;
+        img{
+            width: 290px;
+        }
+    }
+    .new__info{
+        margin-bottom: 13px;
+    }
+}
+
+/*
+ * Footer
+ */
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: darken($dark-blue, 10%);
+    color: $white-smoke;
+    font-size: 0.9rem;
+    padding: 50px 0 25px;
+    h4{
+        margin: 0 0 15px;
+        font-size: 1.4rem;
+        font-weight: 200;
+        color: $white;
+    }
+    ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    li{
+        margin-bottom: 13px;
+    }
+    a{
+        color: $white-smoke;
+        text-decoration: none;
+        &:hover{
+            color: $white;
+        }
+    }
+}
+.footer__section{
+    display: flex;
+    flex-direction: flex-start;
+}
+
+.footer__widget{
+   padding: 0 30px 25px 0; 
+}
+
+.contact{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    i{
+        width: 16px;
+        margin-right: 7px;
+    }
+}
+
+.social{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li{
+        display: inline-block;
+        padding: 0;
+        border-radius: 100%;
+        margin: 0 5px 25px 0;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+        a{
+            background-color: $white;
+            border-radius: 100%;
+            display: block;
+            height: 48px;
+            width: 48px;
+            line-height: 48px;
+            font-size: 1.5rem;
+            color: $dark-blue;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color .3s ease;
+            &:hover{
+                background-color: $yellow;
+                color: black;
+            }
+        }
+    }
+}
+
+/*
+ * Post
+ */
+.post{
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+.post__header{
+    background-color: $dark-blue;
+    background-size: cover;
+    background-position: center;
+    padding-top: 160px;
+    overflow: hidden;
+    text-align: center;
+    .post__title{
+        color: $white;
+        text-shadow: 1px 1px 10px black;
+        max-width: 700px;
+        margin-bottom: 75px;
+        font-weight: 600;
+    }
+}
+
+.post__content{
+    padding-top: 50px;
+    padding-bottom: 25px;
+    border-bottom: 2px solid $white-smoke;
+    h1, h2, h3, h4, h5, h6{
+        color: $blue;
+        font-weight: 200;
+    }
+    p{
+        margin-top: 0;
+        line-height: 1.5rem;
+    }
+    strong{
+        color: $blue;
+    }
+}
+
+.main-sidebar{
+    display: flex;
+    padding-top: 50px;
+    padding-bottom: 25px;
+    .main-column{
+        width: 70%;
+        padding-right: 15px;
+    }
+    .sidebar-column{
+        width: 30%;
+        padding-left: 15px;
+        border-left: 2px solid $white-smoke;
+    }
+}
