@@ -3,90 +3,112 @@
 get_header();
 ?>    
         <main class="content">
+        <?php
+        $promos = new WP_Query( array(
+            'post_type' => 'promos',
+            'posts_per_page' => 1
+        ));
+        if( $promos->have_posts() ) : ?>
             <section class="slider">
-                <article class="slider-item" style="background-image: url(<?php bloginfo('template_url');?>/assets/img/bg.jpeg);">
+            <?php while( $promos->have_posts() ) : $promos->the_post(); 
+                $promo_intro = get_post_meta( $post->ID, 'promo_intro', true);
+                $promo_image_id = get_post_meta( $post->ID, 'promo_image', true);
+                $promo_cta_text = get_post_meta( $post->ID, 'promo_cta_text', true);
+                $promo_cta_link = get_post_meta( $post->ID, 'promo_cta_link', true);
+                if($promo_image_id) 
+                {
+                    $promo_image = wp_get_attachment_image_src($promo_image_id, 'full');
+                }
+            ?>
+                <article class="slider-item" data-stellar-background-ratio="0.5" data-stellar-vertical-offset="50" style="background-image: url('<?php echo $promo_image[0]; ?>');">
                     <div class="container">
-                        <div class="slider-item__info">
-                            <h1 class="slider-item__title">Bienvenido a nuestro nuevo sitio web</h1>
-                            <a href="" class="btn btn--cta btn--yellow">Llamado a la acción</a>
+                        <div class="slider-item__info rv-bottom">
+                            <h1 class="slider-item__title"><?php the_title(); ?></h1>
+                            <a href="<?php echo $promo_cta_link; ?>" class="btn btn--raised btn--cta btn--yellow"><?php echo $promo_cta_text; ?></a>
                         </div>
                     </div>
                 </article>
+            <?php endwhile; ?>
             </section>
-            <section class="featured home-section">
-                <div class="container featured__inner">
-                    <figure class="featured__item">
-                        <a href="">
-                            <img src="http://placehold.it/400x250" alt="">
-                        </a>
-                    </figure>
-                    <figure class="featured__item">
-                        <a href="">
-                            <img src="http://placehold.it/400x250" alt="">
-                        </a>
-                    </figure>
-                    <figure class="featured__item">
-                        <a href="">
-                            <img src="http://placehold.it/400x250" alt="">
-                        </a>
-                    </figure>
-                    <figure class="featured__item">
-                        <a href="">
-                            <img src="http://placehold.it/400x250" alt="">
-                        </a>
-                    </figure>
+        <?php endif; ?>
+            <section class="promos section">
+                <div class="container">
+                    <div class="card promo rv-bottom-many">
+                        <figure class="card__image">
+                            <a href="">
+                                <img src="http://placehold.it/400x250" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="card promo rv-bottom-many">
+                        <figure class="card__image">
+                            <a href="">
+                                <img src="http://placehold.it/400x250" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="card promo rv-bottom-many">
+                        <figure class="card__image">
+                            <a href="">
+                                <img src="http://placehold.it/400x250" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="card promo rv-bottom-many">
+                        <figure class="card__image">
+                            <a href="">
+                                <img src="http://placehold.it/400x250" alt="">
+                            </a>
+                        </figure>
+                    </div>
                 </div>
             </section>
-            <section class="news home-section">
+            <section class="supergiros" data-stellar-background-ratio="0.5">
+                <div class="overlay overlay--supergiros"></div>
                 <div class="container">
-                    <h3 class="container home-section__title">Noticias</h3>
+                    <div class="supergiros__logo rv-right">
+                        <img src="<?php bloginfo( 'template_url' ); ?>/assets/img/logo-supergiros.png" alt="">
+                    </div>
+                    <div class="supergiros__info rv-left">
+                        <h3>Envía y recibe giros a nivel nacional</h3>
+                        <a href="<?php bloginfo( 'url' ); ?>/giros" class="btn btn--raised btn--blue">Ver tarifas</a> <a href="https://supergiros.com.co/" target="_blank" class="btn btn--raised">Ir a supergiros.com.co</a>
+                    </div>
+                    
+                </div>
+            </section>
+            <?php $news = new WP_Query(
+                array(
+                    'post_type' => 'post',
+                    'posts_per_page' => 3
+                )
+            ); ?>
+            <?php if ( $news->have_posts() ) : ?>
+            <section class="news section">
+                <div class="container">
+                    <h3 class="section__title">Últimas <strong>Noticias</strong></h3>
                     <section class="news__inner">
-                        <article class="new">
-                            <figure class="new__thumbnail">
-                                <a href="">
-                                    <img src="<?php bloginfo('template_url');?>/assets/img/examples/protegiro.jpg" alt="">
+                        <?php while ( $news->have_posts() ) : $news->the_post(); ?>
+                        <article class="card new rv-bottom">
+                            <?php if ( has_post_thumbnail() ) : ?>
+                            <figure class="card__image">
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_post_thumbnail( 'thumbnail' ); ?>
                                 </a>
                             </figure>
-                            <h2 class="new__title"><a href="">ProteGiro, Porque 3 son mejor que 1</a></h2>
-                            <span class="new__meta"><i class="fa fa-calendar"></i> 28 de Marzo, 2017</span>
-                            <p>¿Qué es? Es el mas novedoso producto que Supergiros diseñó pensando en ti, porque sabemos lo importante que eres para</p>
-                            <a class="btn btn--blue new__read-more" href="">Leer más</a>
+                            <?php endif; ?>
+                            <div class="card__info">
+                                <h2 class="card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                                <span class="card__meta"><i class="fa fa-calendar"></i> <?php the_time( get_option( 'date_format' ) ); ?></span>
+                                <?php the_excerpt() ;?>
+                            </div>
+                            <div class="card__buttons">
+                                <a href="<?php the_permalink(); ?>" class="btn btn--blue btn--raised">Leer más</a>
+                            </div>
                         </article>
-                        <article class="new">
-                            <figure class="new__thumbnail">
-                                <a href="">
-                                    <img src="<?php bloginfo('template_url');?>/assets/img/examples/bancos.jpg" alt="">
-                                </a>
-                            </figure>
-                            <h2 class="new__title"><a href="">Llamado a Bancos Americanos en Conferencia Mundial de Bancos</a></h2>
-                            <span class="new__meta"><i class="fa fa-calendar"></i> 8 de Marzo, 2017</span>
-                            <p>Bancos corresponsales van a llevar a la ilegalidad a las empresas de giros y juegos en Colombia. Los sectores de</p>
-                            <a class="btn btn--blue new__read-more" href="">Leer más</a>
-                        </article>
-                        <article class="new">
-                            <figure class="new__thumbnail">
-                                <a href="">
-                                    <img src="<?php bloginfo('template_url');?>/assets/img/examples/oficiales.jpg" alt="">
-                                </a>
-                            </figure>
-                            <h2 class="new__title"><a href="">Plenario de Oficiales de Cumplimiento 2017</a></h2>
-                            <span class="new__meta"><i class="fa fa-calendar"></i> 5 de Marzo, 2017</span>
-                            <p>El día 28 de febrero de 2017, se llevó a cabo Reunión Plenario de Oficiales de Cumplimiento del Sector de</p>
-                            <a class="btn btn--blue new__read-more" href="">Leer más</a>
-                        </article>
-                        <article class="new">
-                            <figure class="new__thumbnail">
-                                <a href="">
-                                    <img src="<?php bloginfo('template_url');?>/assets/img/examples/antilavado.jpg" alt="">
-                                </a>
-                            </figure>
-                            <h2 class="new__title"><a href="">Nos sumamos a la lucha - Prevención LA/FT</a></h2>
-                            <span class="new__meta"><i class="fa fa-calendar"></i> 29 de Octubre, 2017</span>
-                            <p>Este 29 de octubre de 2016 nos sumamos al día nacional de la prevención del lavado de activos.</p>
-                            <a class="btn btn--blue new__read-more" href="">Leer más</a>
-                        </article>
+                        <?php endwhile; ?>
                     </section>
                 </div>
             </section>
+            <?php endif; ?>
         </main>
 <?php get_footer();?>
