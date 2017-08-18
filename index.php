@@ -7,7 +7,7 @@
          <?php if ( have_posts() ) : ?>
          <section class="news__inner">
          <?php while ( have_posts() ) : the_post(); ?>
-             <article class="card new rv-bottom-many">
+             <article class="card new rv-bottom">
                 <?php if ( has_post_thumbnail() ) : ?>
                 <figure class="card__image">
                     <a href="<?php the_permalink(); ?>">

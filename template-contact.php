@@ -1,6 +1,10 @@
 <?php 
 /* Template name: Página de Contacto */  
 get_header();
+if ( function_exists( 'wpcf7_enqueue_scripts' ) ) {
+    wpcf7_enqueue_scripts();
+    wpcf7_enqueue_styles();
+}
 ?>
 <?php while ( have_posts() ) : the_post(); ?>
 <article class="post">
@@ -12,7 +16,7 @@ get_header();
                 <?php the_content(); ?>
             </main>
             <aside class="sidebar">
-                <?php get_sidebar('contact'); ?>
+                <?php get_sidebar( 'contact' ); ?>
             </aside>
         </div>
     </div>

@@ -29,7 +29,7 @@
 
     /* Stellar - Parallax Background Effect */ 
     $window.stellar({
-        responsive: true,
+        responsive: false,
         positionProperty: 'position',
         horizontalScrolling: false
     });
@@ -43,6 +43,7 @@
 
     sr.reveal( '.rv-bottom', { origin: 'bottom', delay: 300 } );
     sr.reveal( '.rv-bottom-many', { duration: 1500, origin: 'bottom', delay: 300 }, 50 );
+    sr.reveal( '.rv-top', { origin: 'top', delay: 300 } );
     sr.reveal( '.rv-left', { origin: 'left', distance: '50px', delay: 300 } );
     sr.reveal( '.rv-right', { origin: 'right', distance: '50px', delay: 300 } );
 

@@ -38,12 +38,12 @@
 
     </div>
 </footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<?php wp_footer();?>
 <script src="<?php bloginfo( 'template_url' ); ?>/assets/js/jquery.stellar.min.js"></script>
 <script src="<?php bloginfo( 'template_url' ); ?>/assets/js/scrollreveal.min.js"></script>
-<script src="<?php bloginfo('template_url' ); ?>/assets/js/bootstrap.min.js"></script>
-<?php wp_footer();?>
 <script src="<?php bloginfo('template_url');?>/assets/js/scripts.js"></script>
+<script>loadCSS( "<?php bloginfo('template_url')?>/style.css" );</script>
+<script>loadCSS( "https://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.min.css" );</script>
 <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfR-ZcI5RhQ4Zz_S0sL4J7XdTeBpg4rbw&callback=initMap">
     </script>
 </body>

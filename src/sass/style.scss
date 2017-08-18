@@ -1,21 +1,9 @@
-/*
-Theme Name: Gane Super Servicios
-Theme URI: https://ganesuperservicios.co
-Author: Super Servicios del Valle S.A.
-Author URI: https://ganesuperservicios.co
-Description: Tema de Wordpress para el sitio web de Gane - Super Servicios del Valle S.A.
-Version: 1.0
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: ganesuperservicios
-*/
-
 $blue: rgb(52, 152, 219);
 $dark-blue: rgb(31, 58, 147);
 $white: rgb(255, 255, 255);
 $white-smoke: rgb(244, 244, 244);
 $black-op: rgba(0, 0, 0, 0.4);
-$black-max-op: rgba(0, 0, 0, 0.2);
+$black-max-op: rgba(0, 0, 0, 0);
 $black: rgb(0, 0, 0);
 $yellow: rgba(255, 218, 12, 1.0);
 $orange: rgb(249, 191, 59);
@@ -58,7 +46,6 @@ p{
 }
 iframe{
     border:none;
-    background-color: $gray;
 }
 
 @font-face {
@@ -173,6 +160,9 @@ iframe{
         right: 0;
         top: 0;
         z-index: 0;
+        &--black-op{
+            background-color: $black-max-op;
+        }
 }
 
 /*
@@ -222,6 +212,7 @@ iframe{
     text-decoration: none;
     text-transform: uppercase;
     transition: all .5s ease;
+    border-radius: 2px;
     &:hover, &:focus{
         background-color: darken($white, 5%);
     }
@@ -330,7 +321,7 @@ iframe{
                 a{
                     color: $black;
                     display: block;
-                    font-family: 'Raleway','fontawesome', sans-serif;
+                    font-family: 'Open Sans','fontawesome', sans-serif;
                     font-size: 0.8rem;
                     font-weight: 700;
                     padding: 10px 20px;
@@ -496,8 +487,10 @@ iframe{
  * Slider
  */
 .slider{
+    position: relative;
     .slider-item{
         background-position: center;
+        background-color: $dark-blue;
         background-size: cover;
         color: $white;
         text-align: center;
@@ -522,11 +515,23 @@ iframe{
             font-size: 2rem;
             text-shadow: 1px 1px 10px $black;
             text-transform: uppercase;
+            margin-top: $gutter/2;
             @media screen and ( min-width: $screen-sm ){
                 font-size: 2.8rem;
             }
             @media screen and ( min-width: $screen-lg ){
                 font-size: 3.4rem;
+            }
+        }
+        &__intro{
+            font-size: 1rem;
+            text-shadow: 1px 1px 10px $black;
+            font-weight: 600;
+            @media screen and ( min-width: $screen-sm ){
+                font-size: 1rem;
+            }
+            @media screen and ( min-width: $screen-lg ){
+                font-size: 1.5rem;
             }
         }
     }
@@ -696,7 +701,11 @@ iframe{
 }
 
 .footer__widget{
-    padding: 0 30px $gutter 0; 
+    padding: 0 0 $gutter 0; 
+    @media screen and ( min-width: $screen-md ){
+        padding: 0 30px $gutter 0; 
+    }
+    
 }
 
 .contact i{
@@ -891,6 +900,70 @@ iframe{
     }
 }
 
+.campaign{
+    .campaign__info, .campaign__terms{
+        @media screen and ( min-width: $screen-md ){
+            font-size: .85rem;
+        }
+    }
+    .campaign__info{
+        padding: 0 $gutter 0 0;
+    }
+    .campaign__form{
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    }
+    .post__header{
+        height: 225px;
+        height: 400px;
+        @media screen and ( min-width: $screen-sm ){
+            padding-top: 120px;
+            height: 500px;
+        }
+        @media screen and ( min-width: $screen-lg ){
+            padding-top: 170px;
+            height: 700px;
+        }
+    }
+    .post__content{
+        .container{
+            border: none;
+            @media screen and ( min-width: $screen-xs ){
+                max-width: 420px;
+            }
+            @media screen and ( min-width: $screen-sm ){
+                max-width: 738px;
+            }
+            @media screen and ( min-width: $screen-md ){
+                max-width: 960px;
+            }
+            @media screen and ( min-width: $screen-lg ){
+                max-width: 1200px;
+            }
+        }
+    }
+}
+
+.double-column{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    @media screen and ( min-width: $screen-md ){
+        flex-direction: row;
+    }
+    .column{
+        width: 100%;
+        margin-bottom: $gutter;
+    }
+    .column--overlay{
+        padding: $gutter; 
+        z-index: 9999;
+        background-color: $white;
+        @media screen and ( min-width: $screen-md ){
+            margin-top: $gutter * -5;
+        }
+    }
+}
+
 /*
  * Portfolio
  */
@@ -988,6 +1061,13 @@ iframe{
         justify-content: flex-start;
     }
 }
+.results__loader{
+    display: block;
+    text-align: center;
+    .fa{
+        color: $blue;
+    }
+}
 .result{
     display: none;
     width: 100%;
@@ -1050,7 +1130,6 @@ iframe{
     flex-flow: row wrap;
     justify-content: center;
     .recharge{
-        width: 130px;
         box-shadow: none;
         @media screen and ( min-width: $screen-sm ){
             width: 150px;
@@ -1098,4 +1177,154 @@ iframe{
 }
 .wpcf7-mail-sent-ok{
     border-radius: 5px;
+}
+
+/* 
+ * Error 404
+ */
+.error404{
+    align-items: center;
+    background-color: $dark-blue;
+    background-image: url( './assets/img/404.jpg' );
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    color: $white;
+    text-shadow: 0px 0px 15px $black;
+    .error404__content{
+        text-align: center;
+        span{
+            font-size: 2rem;
+            font-weight:  600;
+        }
+        h1{
+            font-size: 9rem;
+            margin: 0 0 $gutter;
+            line-height: 1;
+        }
+        .btn{
+            text-shadow: none;
+        }
+    }
+}
+
+/* 
+ * Simuchance
+ */
+.simuchance{
+    background-color: $dark-blue;
+    background-image: url( './assets/img/simuchance-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: $white;
+}
+.simuchance__logo{
+    margin-bottom: $gutter;
+    text-align: center;
+    width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    @media screen and ( min-width: $screen-md ){
+        width: 350px;
+    }
+    img{
+        width: 100%;
+        height: auto;
+    }
+}
+.simuchance__main{
+    display: flex;
+    flex-direction: column;
+    @media screen and ( min-width: $screen-sm ){
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+    .simuchance__form{
+        padding: 0 $gutter/2;
+        text-align: center;
+        @media screen and ( min-width: $screen-sm ){
+            width: 40%;
+        }
+        p{
+            margin-top: 0;
+            margin-bottom: $gutter/2;
+        }
+        label{
+            display: block;
+            margin-bottom: $gutter/3;
+            font-size: .9rem;
+        }
+        input[type="text"], select{
+            display: inline-block;
+            width: 100%;
+            padding: 10px 10px;
+            text-align: right;
+            border: none;
+            border-radius: 2px;
+        }
+    }
+    .simuchance__info{
+        padding: 0 $gutter/2;
+        @media screen and ( min-width: $screen-sm ){
+            width: 60%;
+        }
+    }
+    .simuchance__total{
+        text-align: center;
+        .simuchance__prize{
+            font-size: 2.5rem;
+            margin-top: $gutter/2;
+            margin-bottom: $gutter/2;
+            color: #FFE61C;
+            text-shadow: 2px  2px 0 $black;
+            @media screen and ( min-width: $screen-sm ){
+                font-size: 3.5rem;
+            }
+            @media screen and ( min-width: $screen-md ){
+                font-size: 4rem;
+            }
+            @media screen and ( min-width: $screen-lg ){
+                font-size: 4.5rem;
+            }
+        }
+    }
+    .simuchance__details{
+        h3{
+            text-align: center;
+            margin-bottom: $gutter/2;
+            margin-top: 0;
+            font-size: .8rem;
+        }
+        .simuchance__detail{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            @media screen and ( min-width: $screen-sm ){
+                flex-direction: row;
+            }
+            ul{
+                margin: 0 0 $gutter;
+                padding: 0 15px;
+                font-size: .8rem;
+                @media screen and ( min-width: $screen-sm ){
+                    font-size: .8rem;
+                    width: 50%;
+                }
+                @media screen and ( min-width: $screen-lg ){
+                    width: 35%;
+                }
+                li{
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+.simuchance__link{
+    text-align: center;
+    font-size: .9rem;
+    margin-bottom: $gutter;
 }

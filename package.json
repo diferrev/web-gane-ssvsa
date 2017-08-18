@@ -14,10 +14,13 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/diferrev/ganesuperservicios#readme",
   "devDependencies": {
+    "critical": "^0.8.4",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.2",
     "gulp-livereload": "^3.8.1",
     "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^2.1.2"
+    "gulp-uglify": "^2.1.2",
+    "gulp-util": "^3.0.8"
   }
 }

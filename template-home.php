@@ -10,6 +10,7 @@ get_header();
         ));
         if( $promos->have_posts() ) : ?>
             <section class="slider">
+                <div class="overlay overlay--black-op"></div>
             <?php while( $promos->have_posts() ) : $promos->the_post(); 
                 $promo_intro = get_post_meta( $post->ID, 'promo_intro', true);
                 $promo_image_id = get_post_meta( $post->ID, 'promo_image', true);
@@ -23,6 +24,7 @@ get_header();
                 <article class="slider-item" data-stellar-background-ratio="0.5" data-stellar-vertical-offset="50" style="background-image: url('<?php echo $promo_image[0]; ?>');">
                     <div class="container">
                         <div class="slider-item__info rv-bottom">
+                            <span class="slider-item__intro"><?php echo $promo_intro; ?></span>
                             <h1 class="slider-item__title"><?php the_title(); ?></h1>
                             <a href="<?php echo $promo_cta_link; ?>" class="btn btn--raised btn--cta btn--yellow"><?php echo $promo_cta_text; ?></a>
                         </div>
@@ -35,45 +37,88 @@ get_header();
                 <div class="container">
                     <div class="card promo rv-bottom-many">
                         <figure class="card__image">
-                            <a href="">
-                                <img src="http://placehold.it/400x250" alt="">
+                            <a href="<?php bloginfo( 'url' ); ?>/resultados">
+                                <img src="<?php bloginfo( 'template_url' ); ?>/assets/img/promo/resultados-sorteos.jpg" alt="">
                             </a>
                         </figure>
                     </div>
                     <div class="card promo rv-bottom-many">
                         <figure class="card__image">
-                            <a href="">
-                                <img src="http://placehold.it/400x250" alt="">
+                            <a href="<?php bloginfo( 'url' ); ?>/recargas">
+                                <img src="<?php bloginfo( 'template_url' ); ?>/assets/img/promo/recargas-celular.jpg" alt="">
                             </a>
                         </figure>
                     </div>
                     <div class="card promo rv-bottom-many">
                         <figure class="card__image">
-                            <a href="">
-                                <img src="http://placehold.it/400x250" alt="">
+                            <a href="<?php bloginfo( 'url' ); ?>/soat">
+                                <img src="<?php bloginfo( 'template_url' ); ?>/assets/img/promo/comprar-seguro-soat.jpg" alt="">
                             </a>
                         </figure>
                     </div>
                     <div class="card promo rv-bottom-many">
                         <figure class="card__image">
-                            <a href="">
-                                <img src="http://placehold.it/400x250" alt="">
+                            <a href="<?php bloginfo( 'url' ); ?>/supergiros">
+                                <img src="<?php bloginfo( 'template_url' ); ?>/assets/img/promo/supergiros.jpg" alt="">
                             </a>
                         </figure>
                     </div>
                 </div>
             </section>
-            <section class="supergiros" data-stellar-background-ratio="0.5">
-                <div class="overlay overlay--supergiros"></div>
+            <!-- Simulador de premios de Chance -->
+            <section class="simuchance section">
                 <div class="container">
-                    <div class="supergiros__logo rv-right">
-                        <img src="<?php bloginfo( 'template_url' ); ?>/assets/img/logo-supergiros.png" alt="">
+                    <div class="simuchance__logo rv-top">
+                        <img src="<?php bloginfo( 'template_url' );?>/assets/img/simulador-premios-chance.svg" alt="">
                     </div>
-                    <div class="supergiros__info rv-left">
-                        <h3>Envía y recibe giros a nivel nacional</h3>
-                        <a href="<?php bloginfo( 'url' ); ?>/giros" class="btn btn--raised btn--blue">Ver tarifas</a> <a href="https://supergiros.com.co/" target="_blank" class="btn btn--raised">Ir a supergiros.com.co</a>
+                    <div class="simuchance__main rv-bottom">
+                        <div class="simuchance__form">
+                            <img src="" alt="">
+                            <form>
+                                <p>
+                                    <label for="">Modalidad</label>
+                                    <select data-bet="mode" id="mode">
+                                        <option value="0">Selecciona la modalidad</option>
+                                        <option value="4">4 Cifras</option>
+                                        <option value="4c">4 Cifras Combinado</option>
+                                        <option value="3">3 Cifras</option>
+                                        <option value="3c">3 Cifras Combinado</option>
+                                        <option value="2">2 Cifras</option>
+                                        <option value="1">1 Cifra</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label for="">Valor</label>
+                                    <input data-bet="value" type="text">
+                                </p>
+                                <p>
+                                    <button data-bet="calculate" class="btn btn--raised btn--yellow">Calcular</button>
+                                </p>
+                            </form>
+                        </div>
+                        <template id="simuchance__template">
+                            <div class="simuchance__info">
+                                <div class="simuchance__total">
+                                    <span>Tu premio es de:</span>
+                                    <h1 class="simuchance__prize"data-prize="netprize"></h1>
+                                </div>
+                                <div class="simuchance__details">
+                                    <h3>Detalle</h3>
+                                    <div class="simuchance__detail">
+                                        <ul class="left">
+                                            <li><span>Pr Bruto:</span><span data-prize="grossprize"></span></li>
+                                            <li><span>Retención 20%:</span><span data-prize="discount"></span></li>
+                                            <li><span>Pr Neto:</span><span data-prize="netprize-det"></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
                     </div>
-                    
+                    <div class="simuchance__link rv-bottom">
+                        <p>Al reclamar un premio recuerda revisar los requisitos para el pago de éste en el siguiente botón</p>
+                        <a href="<?php bloginfo('url'); ?>/requisitospagopremios" class="btn btn--raised btn--yellow">Requisitos para Pago de Premios</a>
+                    </div>
                 </div>
             </section>
             <?php $news = new WP_Query(
@@ -110,5 +155,18 @@ get_header();
                 </div>
             </section>
             <?php endif; ?>
+            <section class="supergiros" data-stellar-background-ratio="0.5">
+                <div class="overlay overlay--supergiros"></div>
+                <div class="container">
+                    <div class="supergiros__logo rv-right">
+                        <img src="<?php bloginfo( 'template_url' ); ?>/assets/img/logo-supergiros.png" alt="">
+                    </div>
+                    <div class="supergiros__info rv-left">
+                        <h3>Envía y recibe giros a nivel nacional</h3>
+                        <a href="<?php bloginfo( 'url' ); ?>/supergiros" class="btn btn--raised btn--blue">Ver tarifas</a> <a href="https://www.supergiros.com.co/" class="btn btn--raised">Ir a supergiros.com.co</a>
+                    </div>
+                    
+                </div>
+            </section>
         </main>
 <?php get_footer();?>

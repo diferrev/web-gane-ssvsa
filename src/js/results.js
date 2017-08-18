@@ -3,11 +3,12 @@
      * Página de resultados
      */
     var API_URL = 'https://portal.ganesuperservicios.co/api/resultados';
-    var IMG_URL = 'https://new.ganesuperservicios.co/wp-content/themes/ganesuperservicios/assets/img/lotteries/';
+    var IMG_URL = 'https://ganesuperservicios.co/wp-content/themes/ganesuperservicios/assets/img/lotteries/';
     
     var $fieldSearch = $("#datepicker").datepicker();
     var $buttonSearch = $("[data-button='search']");
     var $resultDate = $("[data-resultdate]");
+    var $loader = $(".results__loader");
     var $resultsBox = $(".results");
     var date = null;
 
@@ -16,6 +17,9 @@
     function searchResults()
     {
         date = $fieldSearch.val();
+        $resultDate.html("");
+        $resultsBox.find('.card').remove();
+        $loader.show();
         if( date ){
             $.getJSON( API_URL + "?fecha=" + date, renderResults );
         }else{
@@ -27,7 +31,8 @@
     function renderResults( data )
     {
         var results = data.resultados;
-        $resultsBox.find('.card').remove();
+        
+        $loader.hide();
         if( date ){
             $resultDate.html("Resultados para el: " + date);
         }

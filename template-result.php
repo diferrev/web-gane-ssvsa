@@ -13,6 +13,9 @@ get_header(); ?>
                 <button type="button" class="btn btn--raised btn--blue" data-button='search'><i class="fa fa-search"></i></button>
             </form>
             <h3 data-resultdate class="text-center">Últimos resultados</h3>
+            <div class="results__loader">
+                <i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i>
+            </div>
             <div class="results">
                 <template id="template-result">
                 <div class="card result">
@@ -21,7 +24,7 @@ get_header(); ?>
                     </figure>
                     <div class="card__info">
                         <div class="result__info">
-                            <div data-number class="result__number">2547</div>
+                            <div data-number class="result__number"></div>
                             <div data-sign="container" class="result__sign hidden">
                                 <i data-sign="icon" class="zodiac"></i>
                                 <span data-sign="name"></span>
