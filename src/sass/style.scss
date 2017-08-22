@@ -219,11 +219,6 @@ iframe{
     &--raised{
         box-shadow: 0px 1px 5px $black-op;
     }
-    /* Variaciones de tamaño */
-    &--cta{
-        font-size: 1.1rem;
-        padding: $gutter/1.7 $gutter/1.3;
-    }
     /* Variaciones de color */
     &--yellow{
         background-color: $yellow;
@@ -488,14 +483,23 @@ iframe{
  */
 .slider{
     position: relative;
+    height: 100vh;
+    @media screen and ( min-width: $screen-sm ){
+        height: 600px;
+    }
+    @media screen and ( min-width: $screen-lg ){
+        height: 700px;
+    }
     .slider-item{
         background-position: center;
         background-color: $dark-blue;
         background-size: cover;
         color: $white;
         text-align: center;
-        height: 500px;
+        height: 100%;
         width: 100%;
+        padding-top: 120px;
+        padding-bottom: 48px;
         @media screen and ( min-width: $screen-sm ){
             height: 600px;
         }
@@ -504,37 +508,83 @@ iframe{
         }
         .container{
             display: flex;
-            align-items: center;
+            flex-flow: column;
             height: 100%;
-            justify-content: space-between;
-        }
-        &__info{
-            width: 100%;
-        }
-        &__title{
-            font-size: 2rem;
-            text-shadow: 1px 1px 10px $black;
-            text-transform: uppercase;
-            margin-top: $gutter/2;
             @media screen and ( min-width: $screen-sm ){
-                font-size: 2.8rem;
+                flex-flow: row-reverse nowrap;
+                justify-content: space-around;
+                align-items: center;
+            }
+        }
+        .slider-item__image{
+            margin: 0;
+            padding: 0;
+            height: 40%;
+            img{
+                display: block;
+                height: 100%;
+            }
+            @media screen and ( min-width: $screen-sm ){
+                width: 320px;
+                height: 320px;
+                img{
+                    height: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
             }
             @media screen and ( min-width: $screen-lg ){
-                font-size: 3.4rem;
+                width: 380px;
+                height: 380px;
             }
         }
-        &__intro{
-            font-size: 1rem;
-            text-shadow: 1px 1px 10px $black;
-            font-weight: 600;
+        .slider-item__info{
+            height: 60%;
+            margin-bottom: $gutter;
             @media screen and ( min-width: $screen-sm ){
-                font-size: 1rem;
+                width: 360px;
+                height: auto;
+                text-align: left;
             }
-            @media screen and ( min-width: $screen-lg ){
-                font-size: 1.5rem;
+            @media screen and ( min-width: $screen-md ){
+                width: 460px;
             }
+            @media screen and ( min-width: $screen-md ){
+                width: 560px;
+            }
+        }
+        .slider-item__intro{
+            @media screen and ( min-width: $screen-sm ){
+                font-size: 1.4rem;
+            }
+            @media screen and ( min-width: $screen-md ){
+                font-size: 1.4rem;
+            }
+        }
+        .slider-item__title{
+            font-size: 1.6rem;
+            @media screen and ( min-width: $screen-sm ){
+                font-size: 2.3rem;
+            }
+            @media screen and ( min-width: $screen-md ){
+                font-size: 3rem;
+            }
+        }
+        .slider-item__buttons{
+            
         }
     }
+}
+
+/*
+ * Last result
+ */
+.last-result__box{
+    position: absolute;
+    height: 50px;
+    background-color: $yellow;
+    bottom: 0;
+    width: 100%;
 }
 
 /*

@@ -10,7 +10,7 @@ get_header();
         ));
         if( $promos->have_posts() ) : ?>
             <section class="slider">
-                <div class="overlay overlay--black-op"></div>
+                
             <?php while( $promos->have_posts() ) : $promos->the_post(); 
                 $promo_intro = get_post_meta( $post->ID, 'promo_intro', true);
                 $promo_image_id = get_post_meta( $post->ID, 'promo_image', true);
@@ -21,16 +21,24 @@ get_header();
                     $promo_image = wp_get_attachment_image_src($promo_image_id, 'full');
                 }
             ?>
-                <article class="slider-item" data-stellar-background-ratio="0.5" data-stellar-vertical-offset="50" style="background-image: url('<?php echo $promo_image[0]; ?>');">
-                    <div class="container">
-                        <div class="slider-item__info rv-bottom">
-                            <span class="slider-item__intro"><?php echo $promo_intro; ?></span>
-                            <h1 class="slider-item__title"><?php the_title(); ?></h1>
-                            <a href="<?php echo $promo_cta_link; ?>" class="btn btn--raised btn--cta btn--yellow"><?php echo $promo_cta_text; ?></a>
-                        </div>
-                    </div>
+                <article class="slider-item" style="background-image: url('<?php echo $promo_image[0]; ?>');">
+                   <div class="container">
+                       <figure class="slider-item__image">
+                           <img src="<?php bloginfo( 'template_url' );?>/assets/img/simcard.png" alt="">
+                       </figure>
+                       <div class="slider-item__info">
+                           <p class="slider-item__intro"><?php echo $promo_intro;?></p>
+                           <h2 class="slider-item__title"><?php the_title();?></h2>
+                           <p class="slider-item__buttons">
+                               <a href="<?php echo $promo_cta_link;?>" class="btn btn--raised btn--yellow"><?php echo $promo_cta_text; ?></a>
+                           </p>
+                       </div>
+                   </div>
                 </article>
+                
             <?php endwhile; ?>
+                <!-- Espacio de ultimo resultado -->
+                
             </section>
         <?php endif; ?>
             <section class="promos section">

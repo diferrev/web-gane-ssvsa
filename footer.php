@@ -5,13 +5,13 @@
                 <h4>Contáctenos</h4>
                 <ul class="contact">
                     <li>
-                        <p>Dirección:</strong> Carrera 5 # 10-93, Cartago, Colombia</p>
+                        <p><strong>Dirección:</strong> Carrera 5 # 10-93, Cartago, Colombia</p>
                     </li>
                     <li>
-                        <p>PBX:</strong> +57 (2) 210 7171</p>
+                        <p><strong>PBX:</strong> +57 (2) 210 7171</p>
                     </li>
                     <li>
-                        <p>Correo:</strong> info@ganesuperservicios.co</p>
+                        <p><strong>Correo:</strong> info@ganesuperservicios.co</p>
                     </li>
                 </ul>
             </section>

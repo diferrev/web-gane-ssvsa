@@ -5,9 +5,7 @@ var gulp = require('gulp'),
     uglify = require( 'gulp-uglify' ),
     concat = require( 'gulp-concat' ),
     cssnano = require( 'gulp-cssnano'),
-    gutil = require( 'gulp-util' ),
-    critical = require( 'critical' ).stream,
-    livereload = require('gulp-livereload');
+    gutil = require( 'gulp-util' );
 
 /* Objeto de configuración */
 var config = {
@@ -38,19 +36,6 @@ gulp.task('css', function(){
     .pipe( gulp.dest( './' ) );
 });
 
-// Generar e insertar en línea el CSS critico */
-gulp.task('critical', function () {
-    gulp.src('./header.html')
-        .pipe(critical({
-            base: './', 
-            inline: true, 
-            css: ['./style.css'],
-            minify: true
-        }))
-        .on('error', function(err) { gutil.log(gutil.colors.red(err.message)); })
-        .pipe(gulp.dest('./'));
-});
-
 /* Comprimir js */
 gulp.task('js', function(){
     gulp.src([
@@ -60,15 +45,14 @@ gulp.task('js', function(){
     ])
     .pipe(uglify())
     .pipe(concat('scripts.js'))
-    .pipe(gulp.dest( config.buildPath + '/js/'))
-    .pipe(livereload());
+    .pipe(gulp.dest( config.buildPath + '/js/'));
 });
 
 /* Vigilar cambios en archivos */
 gulp.task('watch', function(){
-  livereload.listen();
-  gulp.watch(config.sassPath + '/*.scss', ['sass', 'css']);
-  gulp.watch(config.jsPath + '/*.js', ['js']);
+    gulp.watch(config.sassPath + '/*.scss', ['sass']);
+    gulp.watch(config.cssPath + '/*.css', ['css']);
+    gulp.watch(config.jsPath + '/*.js', ['js']);
 });
 
-gulp.task('default', [ 'sass', 'css', 'js', 'watch' ]);
+gulp.task('default', [ 'sass', 'js', 'watch' ]);
