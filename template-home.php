@@ -3,44 +3,9 @@
 get_header();
 ?>    
         <main class="content">
-        <?php
-        $promos = new WP_Query( array(
-            'post_type' => 'promos',
-            'posts_per_page' => 1
-        ));
-        if( $promos->have_posts() ) : ?>
-            <section class="slider">
-                
-            <?php while( $promos->have_posts() ) : $promos->the_post(); 
-                $promo_intro = get_post_meta( $post->ID, 'promo_intro', true);
-                $promo_image_id = get_post_meta( $post->ID, 'promo_image', true);
-                $promo_cta_text = get_post_meta( $post->ID, 'promo_cta_text', true);
-                $promo_cta_link = get_post_meta( $post->ID, 'promo_cta_link', true);
-                if($promo_image_id) 
-                {
-                    $promo_image = wp_get_attachment_image_src($promo_image_id, 'full');
-                }
-            ?>
-                <article class="slider-item" style="background-image: url('<?php echo $promo_image[0]; ?>');">
-                   <div class="container">
-                       <figure class="slider-item__image">
-                           <img src="<?php bloginfo( 'template_url' );?>/assets/img/simcard.png" alt="">
-                       </figure>
-                       <div class="slider-item__info">
-                           <p class="slider-item__intro"><?php echo $promo_intro;?></p>
-                           <h2 class="slider-item__title"><?php the_title();?></h2>
-                           <p class="slider-item__buttons">
-                               <a href="<?php echo $promo_cta_link;?>" class="btn btn--raised btn--yellow"><?php echo $promo_cta_text; ?></a>
-                           </p>
-                       </div>
-                   </div>
-                </article>
-                
-            <?php endwhile; ?>
-                <!-- Espacio de ultimo resultado -->
-                
-            </section>
-        <?php endif; ?>
+            <!-- Sección de promocional  -->
+            <?php get_template_part( 'template-parts/promos'); ?>
+            <!-- Sección de promocional fin -->
             <section class="promos section">
                 <div class="container">
                     <div class="card promo rv-bottom-many">
@@ -108,7 +73,7 @@ get_header();
                             <div class="simuchance__info">
                                 <div class="simuchance__total">
                                     <span>Tu premio es de:</span>
-                                    <h1 class="simuchance__prize"data-prize="netprize"></h1>
+                                    <span class="simuchance__prize"data-prize="netprize"></span>
                                 </div>
                                 <div class="simuchance__details">
                                     <h3>Detalle</h3>

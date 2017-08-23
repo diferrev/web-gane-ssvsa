@@ -166,7 +166,7 @@ iframe{
 }
 
 /*
- *
+ * Pager
  */
 .pager{
     margin: 0 $gutter/2 $gutter;
@@ -417,10 +417,104 @@ iframe{
 }
 
 /*
+ * Slider
+ */
+.slider{
+    position: relative;
+    height: 100vh;
+    @media screen and ( min-width: $screen-sm ){
+        height: 600px;
+    }
+    @media screen and ( min-width: $screen-lg ){
+        height: 700px;
+    }
+    .slider-item{
+        background-position: center;
+        background-color: $dark-blue;
+        background-size: cover;
+        color: $white;
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        padding-top: 120px;
+        @media screen and ( min-width: $screen-sm ){
+            height: 600px;
+        }
+        @media screen and ( min-width: $screen-lg ){
+            height: 700px;
+        }
+        .container{
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+            @media screen and ( min-width: $screen-sm ){
+                flex-flow: row-reverse nowrap;
+                justify-content: space-around;
+                align-items: center;
+            }
+        }
+        .slider-item__image{
+            margin: 0;
+            padding: 0;
+            height: 50%;
+            img{
+                display: block;
+                height: 100%;
+            }
+            @media screen and ( min-width: $screen-sm ){
+                width: 320px;
+                height: 320px;
+                img{
+                    height: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+            @media screen and ( min-width: $screen-lg ){
+                width: 380px;
+                height: 380px;
+            }
+        }
+        .slider-item__info{
+            height: 50%;
+            margin-bottom: $gutter;
+            @media screen and ( min-width: $screen-sm ){
+                width: 360px;
+                height: auto;
+                text-align: left;
+            }
+            @media screen and ( min-width: $screen-md ){
+                width: 460px;
+            }
+            @media screen and ( min-width: $screen-md ){
+                width: 560px;
+            }
+        }
+        .slider-item__intro{
+            @media screen and ( min-width: $screen-sm ){
+                font-size: 1.4rem;
+            }
+            @media screen and ( min-width: $screen-md ){
+                font-size: 1.5rem;
+            }
+        }
+        .slider-item__title{
+            font-size: 1.6rem;
+            @media screen and ( min-width: $screen-sm ){
+                font-size: 2.3rem;
+            }
+            @media screen and ( min-width: $screen-md ){
+                font-size: 3rem;
+            }
+        }
+    }
+}
+
+/*
  * Cards
  */
 .card{
-    box-shadow: 0px 3px 5px 1px $black-max-op;
+    box-shadow: 0px 3px 5px 1px $black-op;
     display: flex;
     flex-direction: column;
     margin-bottom: $gutter;
@@ -476,115 +570,6 @@ iframe{
         text-align: right;
         padding: 0 $gutter/1.5 $gutter/2;
     }
-}
-
-/*
- * Slider
- */
-.slider{
-    position: relative;
-    height: 100vh;
-    @media screen and ( min-width: $screen-sm ){
-        height: 600px;
-    }
-    @media screen and ( min-width: $screen-lg ){
-        height: 700px;
-    }
-    .slider-item{
-        background-position: center;
-        background-color: $dark-blue;
-        background-size: cover;
-        color: $white;
-        text-align: center;
-        height: 100%;
-        width: 100%;
-        padding-top: 120px;
-        padding-bottom: 48px;
-        @media screen and ( min-width: $screen-sm ){
-            height: 600px;
-        }
-        @media screen and ( min-width: $screen-lg ){
-            height: 700px;
-        }
-        .container{
-            display: flex;
-            flex-flow: column;
-            height: 100%;
-            @media screen and ( min-width: $screen-sm ){
-                flex-flow: row-reverse nowrap;
-                justify-content: space-around;
-                align-items: center;
-            }
-        }
-        .slider-item__image{
-            margin: 0;
-            padding: 0;
-            height: 40%;
-            img{
-                display: block;
-                height: 100%;
-            }
-            @media screen and ( min-width: $screen-sm ){
-                width: 320px;
-                height: 320px;
-                img{
-                    height: 100%;
-                    margin-left: auto;
-                    margin-right: auto;
-                }
-            }
-            @media screen and ( min-width: $screen-lg ){
-                width: 380px;
-                height: 380px;
-            }
-        }
-        .slider-item__info{
-            height: 60%;
-            margin-bottom: $gutter;
-            @media screen and ( min-width: $screen-sm ){
-                width: 360px;
-                height: auto;
-                text-align: left;
-            }
-            @media screen and ( min-width: $screen-md ){
-                width: 460px;
-            }
-            @media screen and ( min-width: $screen-md ){
-                width: 560px;
-            }
-        }
-        .slider-item__intro{
-            @media screen and ( min-width: $screen-sm ){
-                font-size: 1.4rem;
-            }
-            @media screen and ( min-width: $screen-md ){
-                font-size: 1.4rem;
-            }
-        }
-        .slider-item__title{
-            font-size: 1.6rem;
-            @media screen and ( min-width: $screen-sm ){
-                font-size: 2.3rem;
-            }
-            @media screen and ( min-width: $screen-md ){
-                font-size: 3rem;
-            }
-        }
-        .slider-item__buttons{
-            
-        }
-    }
-}
-
-/*
- * Last result
- */
-.last-result__box{
-    position: absolute;
-    height: 50px;
-    background-color: $yellow;
-    bottom: 0;
-    width: 100%;
 }
 
 /*
